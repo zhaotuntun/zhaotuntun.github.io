@@ -1,0 +1,28 @@
+/* docs/stylesheets/extra.css */
+
+/* 定义更黑的背景色变量 */
+[data-md-color-scheme="slate"] {
+    --md-default-bg-color: #0d0d0d;       /* 几乎纯黑的背景 */
+    --md-default-bg-color--light: #1a1a1a; /*稍微亮一点的侧边栏 */
+    --md-default-fg-color--light: #adbac7; /* 文字颜色偏冷灰 */
+    --md-code-bg-color: #161618;           /* 代码块背景 */
+    
+    /* 调整右侧目录栏的线条颜色，让它隐约可见但不过分抢眼 */
+    --md-accent-fg-color: #7e56c2;         /* 强调色(链接/按钮) */
+}
+
+/* 首页大标题渐变色 (模仿 TonyCrane) */
+.hero-text-gradient {
+    background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
+    -webkit-background-clip: text;
+    background-clip: text; /* ✅ 新增这一行，消除警告 */
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+
+/* 让右侧目录栏(ToC)在宽屏下一直显示 */
+@media screen and (min-width: 1220px) {
+    .md-sidebar--secondary {
+        display: block;
+    }
+}

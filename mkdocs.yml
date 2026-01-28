@@ -1,124 +1,79 @@
-# =========================
-# 1. 基础信息配置
-# =========================
-site_name: 朝暾的学习笔记
-site_url: https://zhaotuntun.github.io/  
+site_name: ZhaoTun's Notes # 浏览器标签页标题
+site_url: https://zhaotuntun.github.io/
 repo_url: https://github.com/zhaotuntun/zhaotuntun.github.io
-repo_name: GitHub # 右上角显示的仓库链接名称
-edit_uri: edit/main/docs/ # 允许从页面直接跳转到 GitHub 编辑
+edit_uri: edit/main/docs/
 
 # =========================
-# 2. 主题配置 (Material)
+# 1. 主题与布局配置
 # =========================
 theme:
   name: material
-  language: zh # 别忘了保留中文设置
+  language: zh
+  # logo: assets/logo.png # (可选)
+  favicon: assets/favicon.png # (可选)
   
-  # 1. 颜色与日夜间模式配置 (Palette)
-  palette: 
-    - scheme: default # 亮色模式
-      primary: indigo # 主色调
-      accent: indigo
-      toggle:
-        icon: material/weather-night
-        name: 切换到深色模式
-    - scheme: slate   # 暗色模式
-      primary: blue
-      accent: blue
-      toggle:
-        icon: material/weather-sunny
-        name: 切换到亮色模式
+  # 字体配置：JetBrains Mono 是高冷极客风的灵魂
+  font:
+    text: Noto Sans SC 
+    code: JetBrains Mono
 
-  # 2. 功能特性配置 (Features)
+  # 调色板：强制深色 (Slate)，配合 CSS 实现纯黑
+  palette: 
+    scheme: slate 
+    primary: black 
+    accent: indigo 
+    toggle:
+      icon: material/weather-night
+      name: 切换到深色模式
+
+  # 功能特性
   features:
-    - navigation.tabs        # 开启顶部导航栏
-    - navigation.tabs.sticky # 顶栏吸顶
+    - navigation.tabs        # ✨ 顶部导航栏 (Top Bar)
+    - navigation.tabs.sticky # ✨ 顶栏吸顶
     - navigation.sections    # 左侧菜单自动分组
-    - navigation.expand      # 默认展开左侧菜单
-    - toc.integrate          # 右侧目录整合到左侧
-    - content.code.copy      # 代码块复制按钮
-    - navigation.top         # 返回顶部按钮 (建议加上这个)
-    - navigation.tracking    # URL随滚动变化
+    - navigation.expand      # 左侧默认展开
+    - navigation.top         # 返回顶部按钮
+    - navigation.tracking    # URL 跟踪
+    - content.code.copy      # 代码块复制
+    # ⚠️ 注意：这里千万不要加 toc.integrate，不加它就会显示右侧栏！
 
 # =========================
-# 3. 插件与扩展 (Markdown 增强)
+# 2. 插件配置
 # =========================
 markdown_extensions:
-  - admonition # 提示块 (!!! note "标题")
-  - abbr # 缩写提示
-  - attr_list # 允许添加 HTML 属性
-  - def_list # 定义列表
-  - footnotes # 脚注
-  - meta # 元数据支持
-  - md_in_html
-  - toc:
-      permalink: true # 生成标题锚点链接
-  
-  # 代码高亮配置
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
   - pymdownx.highlight:
       anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences # 支持嵌套代码块
-
-  # 任务列表 (适合做 Todo List)
   - pymdownx.tasklist:
       custom_checkbox: true
-
-  # 数学公式支持 (适合你的离散数学、算法分析)
   - pymdownx.arithmatex:
       generic: true
+  - attr_list
+  - md_in_html
 
 # =========================
-# 4. 额外脚本 (数学公式渲染)
+# 3. 自定义样式 (实现纯黑背景)
 # =========================
+extra_css:
+  - stylesheets/extra.css
+
 extra_javascript:
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 # =========================
-# 5. 导航栏结构 (核心架构)
+# 4. 导航结构 (示例)
 # =========================
-# 注意：对应的 .md 文件必须真实存在，否则 mkdocs serve 会报错
 nav:
-  - 主页: index.md
-  
-  - CS 自修室: # 对应 "Open Courseware"
-    - CS61A (Python): cs-courses/cs61a.md
-    - CS61B (数据结构): cs-courses/cs61b.md
-    - CS61C (体系结构): cs-courses/cs61c.md
-    - NJU-PA (系统): cs-courses/nju-pa.md
-    - 公开课杂记: cs-courses/others.md
-
-  - 校内课程: # 对应 "University"
-    - 计算机组成与汇编: 
-      - 8086汇编基础: university/assembly/8086-basics.md
-      - 实验踩坑: university/assembly/labs.md
-    - 数字逻辑: university/digital-logic.md
-    - 离散数学: university/discrete-math.md
-    - 大作业项目: university/projects.md
-
-  - 技术栈: # 对应 "Tech Stack"
-    - VS Code 配置: tech/vscode-setup.md
-    - Git 命令速查: tech/git-cheatsheet.md
-    - Verilog 笔记: tech/verilog.md
-    - Markdown 语法: tech/markdown.md
-
-  - 项目工坊: # 对应 "Projects"
-    - 校园服务App: projects/campus-app.md
-    - 蓝牙音箱(实习): projects/bluetooth-speaker.md
-    - 想法池: projects/ideas.md
-
-  - 杂谈与归档: # 对应 "Misc"
-    - 学习周报: misc/weekly.md
-    - 资源收藏: misc/resources.md
-    - 关于我: about.md
-
-# =========================
-# 6. 版权信息
-# =========================
-copyright: >
-  Copyright &copy; 2026 你的名字 - Powered by MkDocs & Material for MkDocs
+  - 首页: index.md
+  - 🎓 CS课程:
+    - CS61A: cs-courses/cs61a.md
+  - 🛠️ 技术栈:
+    - VS Code: tech/vscode-setup.md
+  - 🧩 杂谈:
+    - 关于: about.md
