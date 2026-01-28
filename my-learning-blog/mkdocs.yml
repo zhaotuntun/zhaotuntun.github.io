@@ -1,0 +1,125 @@
+# =========================
+# 1. 基础信息配置
+# =========================
+site_name: 朝暾的学习笔记
+site_url: https://zhaotuntun.github.io/  
+repo_url: https://github.com/zhaotuntun/zhaotuntun.github.io
+repo_name: GitHub # 右上角显示的仓库链接名称
+edit_uri: edit/main/docs/ # 允许从页面直接跳转到 GitHub 编辑
+
+# =========================
+# 2. 主题配置 (Material)
+# =========================
+theme:
+  name: material
+  language: zh # 中文支持
+  # logo: assets/logo.png # (可选) 如果你有Logo图，放在 docs/assets/ 下
+  # favicon: assets/favicon.png # (可选) 浏览器标签页图标
+  
+  # 调色板 (切换日间/夜间模式)
+  palette: 
+    - scheme: default # 日间模式
+      primary: indigo # 主色调 (可改 blue, teal, green 等)
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到夜间模式
+    - scheme: slate # 夜间模式
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: 切换到日间模式
+
+  # 功能特性 (参考了大佬们的配置)
+  features:
+    - navigation.tabs # 启用顶部导航栏 (类似 TonyCrane 的风格)
+    - navigation.top  # 返回顶部按钮
+    - navigation.tracking # URL 随滚动自动变化
+    - navigation.indexes # 允许文件夹直接作为页面索引
+    - toc.follow # 侧边目录随滚动跟随
+    - content.code.copy # 代码块右上角显示复制按钮
+    - content.action.edit # 显示“编辑此页”按钮
+
+# =========================
+# 3. 插件与扩展 (Markdown 增强)
+# =========================
+markdown_extensions:
+  - admonition # 提示块 (!!! note "标题")
+  - abbr # 缩写提示
+  - attr_list # 允许添加 HTML 属性
+  - def_list # 定义列表
+  - footnotes # 脚注
+  - meta # 元数据支持
+  - md_in_html
+  - toc:
+      permalink: true # 生成标题锚点链接
+  
+  # 代码高亮配置
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences # 支持嵌套代码块
+
+  # 任务列表 (适合做 Todo List)
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+  # 数学公式支持 (适合你的离散数学、算法分析)
+  - pymdownx.arithmatex:
+      generic: true
+
+# =========================
+# 4. 额外脚本 (数学公式渲染)
+# =========================
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+# =========================
+# 5. 导航栏结构 (核心架构)
+# =========================
+# 注意：对应的 .md 文件必须真实存在，否则 mkdocs serve 会报错
+nav:
+  - 主页: index.md
+  
+  - CS 自修室: # 对应 "Open Courseware"
+    - CS61A (Python): cs-courses/cs61a.md
+    - CS61B (数据结构): cs-courses/cs61b.md
+    - CS61C (体系结构): cs-courses/cs61c.md
+    - NJU-PA (系统): cs-courses/nju-pa.md
+    - 公开课杂记: cs-courses/others.md
+
+  - 校内课程: # 对应 "University"
+    - 计算机组成与汇编: 
+      - 8086汇编基础: university/assembly/8086-basics.md
+      - 实验踩坑: university/assembly/labs.md
+    - 数字逻辑: university/digital-logic.md
+    - 离散数学: university/discrete-math.md
+    - 大作业项目: university/projects.md
+
+  - 技术栈: # 对应 "Tech Stack"
+    - VS Code 配置: tech/vscode-setup.md
+    - Git 命令速查: tech/git-cheatsheet.md
+    - Verilog 笔记: tech/verilog.md
+    - Markdown 语法: tech/markdown.md
+
+  - 项目工坊: # 对应 "Projects"
+    - 校园服务App: projects/campus-app.md
+    - 蓝牙音箱(实习): projects/bluetooth-speaker.md
+    - 想法池: projects/ideas.md
+
+  - 杂谈与归档: # 对应 "Misc"
+    - 学习周报: misc/weekly.md
+    - 资源收藏: misc/resources.md
+    - 关于我: about.md
+
+# =========================
+# 6. 版权信息
+# =========================
+copyright: >
+  Copyright &copy; 2026 你的名字 - Powered by MkDocs & Material for MkDocs
