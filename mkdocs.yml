@@ -12,34 +12,33 @@ edit_uri: edit/main/docs/ # 允许从页面直接跳转到 GitHub 编辑
 # =========================
 theme:
   name: material
-  language: zh # 中文支持
-  # logo: assets/logo.png # (可选) 如果你有Logo图，放在 docs/assets/ 下
-  # favicon: assets/favicon.png # (可选) 浏览器标签页图标
+  language: zh # 别忘了保留中文设置
   
-  # 调色板 (切换日间/夜间模式)
+  # 1. 颜色与日夜间模式配置 (Palette)
   palette: 
-    - scheme: default # 日间模式
-      primary: indigo # 主色调 (可改 blue, teal, green 等)
-      accent: indigo
-      toggle:
-        icon: material/weather-sunny
-        name: 切换到夜间模式
-    - scheme: slate # 夜间模式
-      primary: indigo
+    - scheme: default # 亮色模式
+      primary: indigo # 主色调
       accent: indigo
       toggle:
         icon: material/weather-night
-        name: 切换到日间模式
+        name: 切换到深色模式
+    - scheme: slate   # 暗色模式
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到亮色模式
 
-  # 功能特性 (参考了大佬们的配置)
+  # 2. 功能特性配置 (Features)
   features:
-    - navigation.tabs # 启用顶部导航栏 (类似 TonyCrane 的风格)
-    - navigation.top  # 返回顶部按钮
-    - navigation.tracking # URL 随滚动自动变化
-    - navigation.indexes # 允许文件夹直接作为页面索引
-    - toc.follow # 侧边目录随滚动跟随
-    - content.code.copy # 代码块右上角显示复制按钮
-    - content.action.edit # 显示“编辑此页”按钮
+    - navigation.tabs        # 开启顶部导航栏
+    - navigation.tabs.sticky # 顶栏吸顶
+    - navigation.sections    # 左侧菜单自动分组
+    - navigation.expand      # 默认展开左侧菜单
+    - toc.integrate          # 右侧目录整合到左侧
+    - content.code.copy      # 代码块复制按钮
+    - navigation.top         # 返回顶部按钮 (建议加上这个)
+    - navigation.tracking    # URL随滚动变化
 
 # =========================
 # 3. 插件与扩展 (Markdown 增强)
