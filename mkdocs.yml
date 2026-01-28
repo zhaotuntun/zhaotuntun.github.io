@@ -67,13 +67,39 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 # =========================
-# 4. 导航结构 (示例)
+# 4. 导航结构 (精简版)
 # =========================
 nav:
   - 首页: index.md
-  - 🎓 CS课程:
-    - CS61A: cs-courses/cs61a.md
-  - 🛠️ 技术栈:
-    - VS Code: tech/vscode-setup.md
-  - 🧩 杂谈:
-    - 关于: about.md
+  
+  # 对应 Bowling 的 "算法和理论"
+  - 算法和理论:
+      - 数据结构 (CS61B): cs-courses/cs61b.md
+      - LeetCode 刷题: algorithm/leetcode.md      # ✨ 新增
+      - 基础算法笔记: algorithm/basic-theory.md   # ✨ 新增
+      # - 离散数学: (已暂时隐藏)
+
+  # 对应 Bowling 的 "系统和体系结构"
+  - 系统和体系结构:
+      - CS61C (体系结构): cs-courses/cs61c.md
+      - NJU-PA (系统): cs-courses/nju-pa.md
+      # - 数字逻辑 & 汇编: (已暂时隐藏)
+
+  # 对应 Bowling 的 "语言和软件开发"
+  - 语言和软件开发:
+      - Python (CS61A): cs-courses/cs61a.md
+      - 其他公开课: cs-courses/other-courses.md   # ✨ 新增
+      # - 技术栈 & 工具: (已暂时隐藏)
+
+  # 对应 Bowling 的 "应用领域"
+  - 应用领域:
+      - 校园服务 App: projects/campus-app.md
+      - 蓝牙音箱制作: projects/bluetooth-speaker.md
+      - 创意想法池: projects/ideas.md
+
+  # 对应 Bowling 的 "其他"
+  - 其他:
+      - 学习周报: misc/weekly.md
+      - 资源收藏: misc/resources.md
+      - 碎碎念: misc/thoughts.md                 # ✨ 新增
+      - 关于本站: about.md
