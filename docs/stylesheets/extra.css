@@ -1,21 +1,20 @@
 /* docs/stylesheets/extra.css */
 
 /* ==========================================================================
-   1. 字体引入
+   1. 字体引入 (修复版)
    ========================================================================== */
 
-/* 优势：自动按需下载汉字，解决中文全字库过大导致的加载缓慢问题 */
-@import url('https://cdn.staticfile.org/lxgw-wenkai-screen-web/v1.7.0/lxgw-wenkai-screen-web.css');
+/* 🟢 修复点：改用饿了么 CDN (npm.elemecdn.com)，且文件名修正为 style.css */
+/* 这个地址在国内非常快，且自动指向最新版 */
+@import url('https://npm.elemecdn.com/lxgw-wenkai-screen-web/style.css');
 
-/* 1.2 定义本地 JetBrains Mono (已存放在 docs/assets/fonts/ 中) */
+/* 本地 JetBrains Mono (保持原样，路径是对的) */
 @font-face {
     font-family: 'JetBrains Mono';
-    /* 路径必须相对于此 CSS 文件，../ 代表先退出 stylesheets 文件夹 */
     src: url('../assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
 }
-
 @font-face {
     font-family: 'JetBrains Mono';
     src: url('../assets/fonts/JetBrainsMono-Bold.woff2') format('woff2');
@@ -24,55 +23,43 @@
 }
 
 /* ==========================================================================
-   2. 全局变量定义 (Variables)
+   2. 全局变量与核心样式
    ========================================================================== */
 :root {
-    /* 核心修改：定义字体栈 */
-    /* 逻辑：优先显示 JetBrains Mono (英文/数字)，汉字 fallback 到霞鹜文楷 */
+    /* 这里的名字必须匹配：英文用 JetBrains Mono，中文用 LXGW WenKai Screen */
     --md-text-font-family: "JetBrains Mono", "LXGW WenKai Screen", sans-serif;
-    
-    /* 代码块强制使用 JetBrains Mono */
     --md-code-font-family: "JetBrains Mono", monospace;
 }
 
-/* ==========================================================================
-   3. 核心样式应用 (Core Styles)
-   ========================================================================== */
-
-/* 强制覆盖 Material 主题的所有文本、输入框和导航栏 */
+/* 强制覆盖 Material 主题默认字体 */
 body, input, .md-header, .md-nav, .md-footer, .md-select {
     font-family: var(--md-text-font-family) !important;
     font-size: 16px;
-    -webkit-font-smoothing: antialiased; /* 针对 Webkit 内核的字体平滑优化 */
+    -webkit-font-smoothing: antialiased;
 }
 
-/* 代码块、行内代码、键盘按键应用代码字体 */
 pre, code, kbd, .md-typeset pre code {
     font-family: var(--md-code-font-family) !important;
 }
 
-/* 标题样式：加粗并统一字体 */
+/* 标题加粗 */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--md-text-font-family) !important;
     font-weight: 700 !important;
 }
 
 /* ==========================================================================
-   4. 深色模式纯黑定制 (TonyCrane 风格核心)
+   3. 深色模式纯黑背景
    ========================================================================== */
 [data-md-color-scheme="slate"] {
-    --md-default-bg-color: #0d0d0d;       /* 极致纯黑背景 */
+    --md-default-bg-color: #0d0d0d;
     --md-default-bg-color--light: #1a1a1a;
     --md-default-fg-color--light: #adbac7;
     --md-code-bg-color: #161618;
-    --md-accent-fg-color: #7e56c2;       /* 标志性紫色点缀 */
+    --md-accent-fg-color: #7e56c2;
 }
 
-/* ==========================================================================
-   5. UI 特效与布局
-   ========================================================================== */
-
-/* 首页大标题渐变色 (流光效果预览) */
+/* 首页渐变大标题 */
 .hero-text-gradient {
     background: linear-gradient(120deg, #bd34fe 30%, #41d1ff);
     -webkit-background-clip: text;
@@ -81,14 +68,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
 }
 
-/* 让右侧目录栏(ToC)在宽屏下一直显示 */
+/* 宽屏显示右侧目录 */
 @media screen and (min-width: 1220px) {
-    .md-sidebar--secondary {
-        display: block;
-    }
-}
-
-/* 优化提示框(Admonition)内部的字体统一 */
-.md-typeset .admonition, .md-typeset details {
-    font-family: var(--md-text-font-family);
+    .md-sidebar--secondary { display: block; }
 }

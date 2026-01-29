@@ -75,9 +75,12 @@ extra_css:
   - stylesheets/extra.css
 
 extra_javascript:
-  - javascripts/mathjax.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  # 👇 删掉 polyfill (已有安全风险且无法访问)
+  # - https://polyfill.io/v3/polyfill.min.js?features=es6
+  
+  # 👇 建议暂时先注释掉 mathjax，或者换成国内源，先确保字体能出来
+  # - javascripts/mathjax.js
+  # - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 # =========================
 # 4. 导航结构 (精简版)
