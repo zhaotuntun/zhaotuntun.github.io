@@ -4,9 +4,8 @@
    1. 字体引入 (修复版)
    ========================================================================== */
 
-/* 🟢 修复点：改用饿了么 CDN (npm.elemecdn.com)，且文件名修正为 style.css */
-/* 这个地址在国内非常快，且自动指向最新版 */
-@import url('https://npm.elemecdn.com/lxgw-wenkai-screen-web/style.css');
+/* 来自 Tony Crane 的 LXGW WenKai Screen (修复了部分平台无法访问的问题) */
+@import url('https://cdn.tonycrane.cc/lxgw/lxgwscreen.css');
 
 /* 本地 JetBrains Mono (保持原样，路径是对的) */
 @font-face {
