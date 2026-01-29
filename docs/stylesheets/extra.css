@@ -1,27 +1,29 @@
 /* docs/stylesheets/extra.css */
 
-/* ==========================================================================
-   1. 字体引入 (1:1 复刻 TonyCrane 配置，使用国内镜像加速)
-   ========================================================================== */
+/* 1. 必须放在文件最顶端 */
+/* 引入 JetBrains Mono */
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.0/index.css');
+/* 引入 霞鹜文楷 屏幕版 (通用 CDN 版) */
+@import url('https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-web/style.css');
 
-/* 1. 引入 JetBrains Mono (他的英文和代码字体) */
-@import url('https://fonts.loli.net/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-
-/* 2. 引入 霞鹜文楷-屏幕阅读版 (LXGW WenKai Screen - 他的中文正文字体) */
-/* Screen 版本专门优化了屏幕显示，比普通版更清晰，不会太细 */
-@import url('https://cdn.staticfile.org/lxgw-wenkai-screen-web/v1.7.0/lxgw-wenkai-screen-web.css');
-
-
-/* ==========================================================================
-   2. 全局变量定义 (Variables)
-   ========================================================================== */
 :root {
-    /* 核心修改：定义字体栈 */
-    /* 逻辑：优先显示 JetBrains Mono (解决英文/数字)，如果没有对应字符(如汉字)则使用 霞鹜文楷 */
+    /* 核心：确保名称与库定义一致 */
+    /* 英文: "JetBrains Mono", 中文: "LXGW WenKai Screen" */
     --md-text-font-family: "JetBrains Mono", "LXGW WenKai Screen", sans-serif;
-    
-    /* 代码块强制使用 JetBrains Mono */
     --md-code-font-family: "JetBrains Mono", monospace;
+}
+
+/* 强制应用到全局 */
+body, input {
+    font-family: var(--md-text-font-family) !important;
+}
+
+pre, code, kbd {
+    font-family: var(--md-code-font-family) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--md-text-font-family) !important;
 }
 
 
