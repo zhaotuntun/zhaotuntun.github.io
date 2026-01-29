@@ -74,7 +74,7 @@ markdown_extensions:
 extra_css:
   - stylesheets/extra.css
 
-extra_javascript:
+extra_javascript: []
   # 👇 删掉 polyfill (已有安全风险且无法访问)
   # - https://polyfill.io/v3/polyfill.min.js?features=es6
   
