@@ -1,0 +1,88 @@
+/* docs/stylesheets/extra.css */
+
+/* ==========================================================================
+   1. 本地字体备份 (当 CDN 波动时确保英文不崩)
+   ========================================================================== */
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../assets/fonts/jb-reg.woff2') format('woff2');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../assets/fonts/jb-bold.woff2') format('woff2');
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   2. 变量定义 (完全复刻 TonyCrane 变量映射)
+   ========================================================================== */
+:root {
+    /* 定义字体栈：英文优先 JetBrains Mono，中文 fallback 到霞鹜文楷 */
+    --md-text-font: "JetBrains Mono", "LXGW WenKai Screen"; 
+    --md-code-font: "JetBrains Mono";
+
+    /* 适配 Material 新版变量名 */
+    --md-text-font-family: var(--md-text-font), sans-serif;
+    --md-code-font-family: var(--md-code-font), monospace;
+}
+
+/* ==========================================================================
+   3. 全局排版微调 (复刻其 custom.css 逻辑)
+   ========================================================================== */
+
+/* 强制应用字体并进行抗锯齿优化 */
+body, input, .md-header, .md-nav, .md-footer, .md-select {
+    font-family: var(--md-text-font-family) !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 调整标题权重：让楷体看起来更清秀，不显得臃肿 */
+.md-typeset h1, .md-typeset h2 {
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.md-typeset h3 {
+    font-weight: 600;
+}
+
+/* 代码块字体强制统一 */
+pre, code, kbd, .md-typeset pre code {
+    font-family: var(--md-code-font-family) !important;
+}
+
+/* 响应式字号放大：这是 TonyCrane 风格阅读感极佳的秘诀 */
+@media screen and (min-width: 960px) {
+    html {
+        font-size: 137.5%; 
+    }
+}
+
+.md-typeset {
+    font-size: .7rem; /* 配合 html 的 137.5% 实现精致的平衡 */
+}
+
+/* ==========================================================================
+   4. 极致纯黑与 UI 特效 (保留你的设置)
+   ========================================================================== */
+[data-md-color-scheme="slate"] {
+    --md-default-bg-color: #0d0d0d;       /* 极致纯黑 */
+    --md-primary-fg-color: #0d0d0d;       /* 顶栏同步黑色 */
+    --md-code-bg-color: #161618;
+    --md-accent-fg-color: #7e56c2;       /* 标志性紫色 */
+}
+
+/* 首页流光渐变标题 */
+.hero-text-gradient {
+    background: linear-gradient(120deg, #bd34fe 30%, #41d1ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+
+/* 宽屏右侧目录强制显示 */
+@media screen and (min-width: 1220px) {
+    .md-sidebar--secondary { display: block; }
+}
