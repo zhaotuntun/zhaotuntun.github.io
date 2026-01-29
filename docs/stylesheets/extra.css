@@ -4,14 +4,14 @@
    1. 字体引入
    ========================================================================== */
 
-/* 引入霞鹜文楷 Screen 切片版 (CDN 动态加载方案) */
-/* 采用动态分片，浏览器仅下载页面出现的汉字，解决中文体积过大的问题 */
-@import url('https://cdn.staticfile.org/lxgw-wenkai-screen-web/v1.7.0/lxgw-wenkai-screen-web.css');
+/* 1.1 引入 TonyCrane 维护的霞鹜文楷 Screen CDN (分片加载方案) */
+/* 优势：自动按需下载汉字，解决中文全字库过大导致的加载缓慢问题 */
+@import url('https://cdn.tonycrane.cc/lxgw/lxgwscreen.css');
 
-/* 定义本地 JetBrains Mono (从你 docs/assets/fonts/ 引入) */
+/* 1.2 定义本地 JetBrains Mono (已存放在 docs/assets/fonts/ 中) */
 @font-face {
     font-family: 'JetBrains Mono';
-    /* 路径相对于 stylesheets 文件夹，需先返回上级目录 */
+    /* 路径必须相对于此 CSS 文件，../ 代表先退出 stylesheets 文件夹 */
     src: url('../assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
@@ -25,26 +25,29 @@
 }
 
 /* ==========================================================================
-   2. 全局变量定义
+   2. 全局变量定义 (Variables)
    ========================================================================== */
 :root {
-    /* 字体栈逻辑：英文优先使用 JetBrains Mono，中文 fallback 到霞鹜文楷 */
+    /* 核心修改：定义字体栈 */
+    /* 逻辑：优先显示 JetBrains Mono (英文/数字)，汉字 fallback 到霞鹜文楷 */
     --md-text-font-family: "JetBrains Mono", "LXGW WenKai Screen", sans-serif;
+    
+    /* 代码块强制使用 JetBrains Mono */
     --md-code-font-family: "JetBrains Mono", monospace;
 }
 
 /* ==========================================================================
-   3. 核心样式应用
+   3. 核心样式应用 (Core Styles)
    ========================================================================== */
 
-/* 强制应用字体到全局，覆盖 Material Theme 默认设置 */
+/* 强制覆盖 Material 主题的所有文本、输入框和导航栏 */
 body, input, .md-header, .md-nav, .md-footer, .md-select {
     font-family: var(--md-text-font-family) !important;
     font-size: 16px;
-    -webkit-font-smoothing: antialiased; /* 字体抗锯齿优化 */
+    -webkit-font-smoothing: antialiased; /* 针对 Webkit 内核的字体平滑优化 */
 }
 
-/* 代码块、行内代码、键盘按键 */
+/* 代码块、行内代码、键盘按键应用代码字体 */
 pre, code, kbd, .md-typeset pre code {
     font-family: var(--md-code-font-family) !important;
 }
@@ -63,14 +66,14 @@ h1, h2, h3, h4, h5, h6 {
     --md-default-bg-color--light: #1a1a1a;
     --md-default-fg-color--light: #adbac7;
     --md-code-bg-color: #161618;
-    --md-accent-fg-color: #7e56c2;       /* 紫色点缀 */
+    --md-accent-fg-color: #7e56c2;       /* 标志性紫色点缀 */
 }
 
 /* ==========================================================================
-   5. UI 特效与布局微调
+   5. UI 特效与布局
    ========================================================================== */
 
-/* 首页大标题流光渐变色 */
+/* 首页大标题渐变色 (流光效果预览) */
 .hero-text-gradient {
     background: linear-gradient(120deg, #bd34fe 30%, #41d1ff);
     -webkit-background-clip: text;
@@ -86,7 +89,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* 优化 Admonition (提示框) 的字体统一 */
+/* 优化提示框(Admonition)内部的字体统一 */
 .md-typeset .admonition, .md-typeset details {
     font-family: var(--md-text-font-family);
 }
