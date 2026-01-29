@@ -4,9 +4,8 @@
    1. 字体引入
    ========================================================================== */
 
-/* 1.1 引入 TonyCrane 维护的霞鹜文楷 Screen CDN (分片加载方案) */
 /* 优势：自动按需下载汉字，解决中文全字库过大导致的加载缓慢问题 */
-@import url('https://cdn.tonycrane.cc/lxgw/lxgwscreen.css');
+@import url('https://cdn.staticfile.org/lxgw-wenkai-screen-web/v1.7.0/lxgw-wenkai-screen-web.css');
 
 /* 1.2 定义本地 JetBrains Mono (已存放在 docs/assets/fonts/ 中) */
 @font-face {
