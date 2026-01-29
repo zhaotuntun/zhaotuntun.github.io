@@ -63,7 +63,7 @@ markdown_extensions:
 extra_css:
   # 1. 远程引入字体定义 (包含 @font-face 逻辑)
   - https://cdn.tonycrane.cc/jbmono/jetbrainsmono.css
-  - https://npm.elemecdn.com/lxgw-wenkai-screen-web/style.css
+  - https://npm.elemecdn.com/lxgw-wenkai-screen-webfont@1.7.0/lxgwwenkaiscreen.css
   # 2. 引入你本地的微调样式
   - stylesheets/extra.css
 extra_javascript: []
