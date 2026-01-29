@@ -17,14 +17,23 @@ theme:
     text: Noto Sans SC 
     code: JetBrains Mono
 
-  # 调色板：强制深色 (Slate)，配合 CSS 实现纯黑
+  # 颜色主题配置
   palette: 
-    scheme: slate 
-    primary: black 
-    accent: indigo 
-    toggle:
-      icon: material/weather-night
-      name: 切换到深色模式
+    # 第 1 组：日间模式 (default)
+    - scheme: default
+      primary: white      # 日间模式通常用浅色或白色主色
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: 切换到深色模式
+
+    # 第 2 组：夜间模式 (slate) -> 这是 TonyCrane 的核心风格
+    - scheme: slate
+      primary: black      # 这里的 black 配合你的 extra.css 才是纯黑
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到日间模式
 
   # 功能特性
   features:
@@ -54,7 +63,10 @@ markdown_extensions:
       generic: true
   - attr_list
   - md_in_html
-
+  # 👇 新增下面这几行，一定要严格对齐！
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 # =========================
 # 3. 自定义样式 (实现纯黑背景)
 # =========================

@@ -1,5 +1,21 @@
 /* docs/stylesheets/extra.css */
 
+/* 引入霞鹜文楷 (一款非常好看的开源手写体，TonyCrane 有时也用这个) */
+@import url('https://cdn.staticfile.org/lxgw-wenkai-screen-web/v1.7.0/lxgw-wenkai-screen-web.css');
+
+/* 或者只引入思源黑体 (更标准) */
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap'); (Google源，国内慎用) */
+
+:root {
+    /* 定义字体变量 */
+    --md-text-font: "LXGW WenKai Screen", "Noto Sans SC", sans-serif;
+    --md-code-font: "JetBrains Mono", monospace;
+}
+
+body {
+    font-family: var(--md-text-font);
+}
+
 /* 定义更黑的背景色变量 */
 [data-md-color-scheme="slate"] {
     --md-default-bg-color: #0d0d0d;       /* 几乎纯黑的背景 */
@@ -25,4 +41,40 @@
     .md-sidebar--secondary {
         display: block;
     }
+}
+
+/* 自定义 Abstract 提示块的样式 */
+.md-typeset .admonition.abstract {
+    border-left-width: 0px; /* 去掉默认左边框 */
+    border-top: 4px solid;  /* 改为顶部边框 */
+    
+    /* 定义边框为渐变色 (和你首页标题一致) */
+    border-image: linear-gradient(120deg, #bd34fe 30%, #41d1ff) 1;
+    
+    /*稍微加深一点背景，突出显示 */
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.md-typeset .admonition.abstract > .admonition-title {
+    /* 标题背景也搞成渐变，或者保持透明 */
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: bold;
+}
+
+/* 这是一个可选的：让标题文字也变成渐变色 */
+.md-typeset .admonition.abstract > .admonition-title::before {
+    background-color: #bd34fe; /* 图标颜色 */
+}
+
+/* 让所有标题 (h1-h6) 都使用代码字体，产生极客感 */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--md-code-font-family); /* 使用你在yml里设置的 code 字体 */
+    font-weight: 700; /* 加粗 */
+}
+
+/* 优化中英文混排显示 */
+body {
+    /* 英文优先用代码字体，中文回退到思源黑体 */
+    font-family: "JetBrains Mono", "Noto Sans SC", sans-serif;
 }
