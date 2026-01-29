@@ -12,10 +12,10 @@ theme:
   # logo: assets/logo.png # (可选)
   favicon: assets/favicon.png # (可选)
   
-  # 字体配置：JetBrains Mono 是高冷极客风的灵魂
-  font:
-    text: Noto Sans SC 
-    code: JetBrains Mono
+  # 👇 核心修改：这里必须设置为 false！
+  # 这样 MkDocs 就不会去加载默认的 Google Fonts，
+  # 而是完全听从我们在 extra.css 里写的配置 (JetBrains Mono + 霞鹜文楷)
+  font: false
 
   # 颜色主题配置
   palette: 
@@ -67,8 +67,9 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
 # =========================
-# 3. 自定义样式 (实现纯黑背景)
+# 3. 自定义样式 (实现纯黑背景 + 自定义字体)
 # =========================
 extra_css:
   - stylesheets/extra.css

@@ -1,27 +1,27 @@
 /* docs/stylesheets/extra.css */
 
 /* ==========================================================================
-   1. 字体引入 (使用国内镜像 loli.net 加速)
+   1. 字体引入 (1:1 复刻 TonyCrane 配置，使用国内镜像加速)
    ========================================================================== */
 
-/* 1. 引入 Fira Code (TonyCrane 同款英文/代码字体) */
-@import url('https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;700&display=swap');
+/* 1. 引入 JetBrains Mono (他的英文和代码字体) */
+@import url('https://fonts.loli.net/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 
-/* 2. 引入 Noto Serif SC (思源宋体 - 这就是你想要的那个偏楷体的感觉) */
-/* wght@400;700 表示同时加载常规和粗体字重 */
-@import url('https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+/* 2. 引入 霞鹜文楷-屏幕阅读版 (LXGW WenKai Screen - 他的中文正文字体) */
+/* Screen 版本专门优化了屏幕显示，比普通版更清晰，不会太细 */
+@import url('https://cdn.staticfile.org/lxgw-wenkai-screen-web/v1.7.0/lxgw-wenkai-screen-web.css');
 
 
 /* ==========================================================================
    2. 全局变量定义 (Variables)
    ========================================================================== */
 :root {
-    /* 核心修改：英文用 Fira Code，中文优先用思源宋体 */
-    /* 如果加载失败，回退到系统自带的宋体或楷体 */
-    --md-text-font-family: "Fira Code", "Noto Serif SC", "STSong", "KaiTi", serif;
+    /* 核心修改：定义字体栈 */
+    /* 逻辑：优先显示 JetBrains Mono (解决英文/数字)，如果没有对应字符(如汉字)则使用 霞鹜文楷 */
+    --md-text-font-family: "JetBrains Mono", "LXGW WenKai Screen", sans-serif;
     
-    /* 代码字体也改成 Fira Code */
-    --md-code-font-family: "Fira Code", monospace;
+    /* 代码块强制使用 JetBrains Mono */
+    --md-code-font-family: "JetBrains Mono", monospace;
 }
 
 
@@ -32,24 +32,24 @@
 /* 全局应用字体 */
 body {
     font-family: var(--md-text-font-family);
-    font-weight: 400; /* 正文用常规字重，不要太粗 */
-    font-size: 16px;  /* 稍微调大一点点字体，看着更舒服 */
+    font-weight: 400; /* 霞鹜文楷默认字重就很舒服，不需要加粗 */
+    font-size: 16px;  /* 保持 16px 的舒适阅读大小 */
 }
 
-/* 代码块应用字体 */
+/* 代码块、键盘按键应用代码字体 */
 pre, code, kbd {
     font-family: var(--md-code-font-family);
 }
 
-/* 标题样式：强制使用 Fira Code，营造极客感 */
+/* 标题样式：TonyCrane 的标题也是用这个字体栈，保持统一 */
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--md-code-font-family);
-    font-weight: 700;
+    font-family: var(--md-text-font-family); 
+    font-weight: 700; /* 标题加粗 */
 }
 
 
 /* ==========================================================================
-   4. 其他样式保持不变 (背景色、渐变等)
+   4. 其他样式 (保持你原有的深色模式和渐变设置)
    ========================================================================== */
 
 /* 定义更黑的背景色变量 (Dark Mode) */
