@@ -19,21 +19,21 @@ theme:
 
   # 颜色主题配置
   palette: 
-    # 第 1 组：日间模式 (default)
-    - scheme: default
-      primary: white      # 日间模式通常用浅色或白色主色
-      accent: indigo
-      toggle:
-        icon: material/weather-night
-        name: 切换到深色模式
-
-    # 第 2 组：夜间模式 (slate) -> 这是 TonyCrane 的核心风格
+    # 👇 第一组：现在是夜间模式 (slate)，一打开就是它
     - scheme: slate
-      primary: black      # 这里的 black 配合你的 extra.css 才是纯黑
+      primary: black
       accent: indigo
       toggle:
         icon: material/weather-sunny
         name: 切换到日间模式
+
+    # 👇 第二组：现在是日间模式 (default)
+    - scheme: default
+      primary: white
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: 切换到深色模式
 
   # 功能特性
   features:
