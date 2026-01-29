@@ -9,25 +9,18 @@ edit_uri: edit/main/docs/
 theme:
   name: material
   language: zh
-  # logo: assets/logo.png # (可选)
-  favicon: assets/favicon.png # (可选)
+  favicon: assets/favicon.png
   
-  # 👇 核心修改：这里必须设置为 false！
-  # 这样 MkDocs 就不会去加载默认的 Google Fonts，
-  # 而是完全听从我们在 extra.css 里写的配置 (JetBrains Mono + 霞鹜文楷)
+  # 👇 必须为 false，拆掉默认地基
   font: false
 
-  # 颜色主题配置
   palette: 
-    # 👇 第一组：现在是夜间模式 (slate)，一打开就是它
     - scheme: slate
       primary: black
       accent: indigo
       toggle:
         icon: material/weather-sunny
         name: 切换到日间模式
-
-    # 👇 第二组：现在是日间模式 (default)
     - scheme: default
       primary: white
       accent: indigo
@@ -35,16 +28,14 @@ theme:
         icon: material/weather-night
         name: 切换到深色模式
 
-  # 功能特性
   features:
-    - navigation.tabs        # ✨ 顶部导航栏 (Top Bar)
-    - navigation.tabs.sticky # ✨ 顶栏吸顶
-    - navigation.sections    # 左侧菜单自动分组
-    - navigation.expand      # 左侧默认展开
-    - navigation.top         # 返回顶部按钮
-    - navigation.tracking    # URL 跟踪
-    - content.code.copy      # 代码块复制
-    # ⚠️ 注意：这里千万不要加 toc.integrate，不加它就会显示右侧栏！
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.tracking
+    - content.code.copy
 
 # =========================
 # 2. 插件配置
@@ -63,59 +54,43 @@ markdown_extensions:
       generic: true
   - attr_list
   - md_in_html
-  # 👇 新增下面这几行，一定要严格对齐！
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 # =========================
-# 3. 自定义样式 (实现纯黑背景 + 自定义字体)
+# 3. 自定义样式 (完全复刻 TonyCrane 引入方式)
 # =========================
 extra_css:
+  # 直接引入大佬维护的远程样式
+  - https://cdn.tonycrane.cc/jbmono/jetbrainsmono.css
+  - https://cdn.tonycrane.cc/lxgw/lxgwscreen.css
+  # 引入你本地的微调样式
   - stylesheets/extra.css
 
 extra_javascript: []
-  # 👇 删掉 polyfill (已有安全风险且无法访问)
-  # - https://polyfill.io/v3/polyfill.min.js?features=es6
-  
-  # 👇 建议暂时先注释掉 mathjax，或者换成国内源，先确保字体能出来
-  # - javascripts/mathjax.js
-  # - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 # =========================
-# 4. 导航结构 (精简版)
+# 4. 导航结构
 # =========================
 nav:
   - 首页: index.md
-  
-  # 对应 Bowling 的 "算法和理论"
   - 算法和理论:
       - 数据结构 (CS61B): cs-courses/cs61b.md
-      - LeetCode 刷题: algorithm/leetcode.md      # ✨ 新增
-      - 基础算法笔记: algorithm/basic-theory.md   # ✨ 新增
-      # - 离散数学: (已暂时隐藏)
-
-  # 对应 Bowling 的 "系统和体系结构"
+      - LeetCode 刷题: algorithm/leetcode.md
+      - 基础算法笔记: algorithm/basic-theory.md
   - 系统和体系结构:
       - CS61C (体系结构): cs-courses/cs61c.md
       - NJU-PA (系统): cs-courses/nju-pa.md
-      # - 数字逻辑 & 汇编: (已暂时隐藏)
-
-  # 对应 Bowling 的 "语言和软件开发"
   - 语言和软件开发:
       - Python (CS61A): cs-courses/cs61a.md
-      - 其他公开课: cs-courses/other-courses.md   # ✨ 新增
-      # - 技术栈 & 工具: (已暂时隐藏)
-
-  # 对应 Bowling 的 "应用领域"
+      - 其他公开课: cs-courses/other-courses.md
   - 应用领域:
       - 校园服务 App: projects/campus-app.md
       - 蓝牙音箱制作: projects/bluetooth-speaker.md
       - 创意想法池: projects/ideas.md
-
-  # 对应 Bowling 的 "其他"
   - 其他:
       - 学习周报: misc/weekly.md
       - 资源收藏: misc/resources.md
-      - 碎碎念: misc/thoughts.md                 # ✨ 新增
+      - 碎碎念: misc/thoughts.md
       - 关于本站: about.md

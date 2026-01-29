@@ -1,50 +1,81 @@
 /* docs/stylesheets/extra.css */
 
-/* 1. 定义字体 (引用刚才改名后的文件) */
+/* ==========================================================================
+   1. 本地字体备份 (当远程 CDN 不可用时作为兜底)
+   ========================================================================== */
 @font-face {
-    font-family: 'MyJetBrains';  /* 起个新名字，强制浏览器不使用系统缓存 */
-    src: url('../assets/fonts/jb-reg.woff2') format('woff2'); /* 对应 jb-reg.woff2 */
+    font-family: 'JetBrains Mono';
+    src: url('../assets/fonts/jb-reg.woff2') format('woff2');
     font-weight: 400;
-    font-style: normal;
 }
-
 @font-face {
-    font-family: 'MyJetBrains';
-    src: url('../assets/fonts/jb-bold.woff2') format('woff2'); /* 对应 jb-bold.woff2 */
+    font-family: 'JetBrains Mono';
+    src: url('../assets/fonts/jb-bold.woff2') format('woff2');
     font-weight: 700;
-    font-style: normal;
 }
 
-/* 2. 变量定义 */
+/* ==========================================================================
+   2. 变量定义 (完全复刻 TonyCrane 变量映射)
+   ========================================================================== */
 :root {
-    --md-text-font-family: "MyJetBrains", sans-serif;
-    --md-code-font-family: "MyJetBrains", monospace;
+    /* 采用其变量定义方式 */
+    --md-text-font: "JetBrains Mono", "LXGW WenKai Screen"; 
+    --md-code-font: "JetBrains Mono";
+
+    /* 适配 Material 新版变量 */
+    --md-text-font-family: var(--md-text-font), sans-serif;
+    --md-code-font-family: var(--md-code-font), monospace;
 }
 
-/* 3. 强制全局覆盖 */
-body, input, .md-header, .md-nav, .md-footer, .md-select {
+/* ==========================================================================
+   3. 全局排版微调 (复刻其 custom.css 逻辑)
+   ========================================================================== */
+
+/* 强制应用字体 */
+body, input, .md-header, .md-nav, .md-footer {
     font-family: var(--md-text-font-family) !important;
+    -webkit-font-smoothing: antialiased;
 }
 
+/* 调整标题权重，让楷体不臃肿 */
+.md-typeset h1, .md-typeset h2 {
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.md-typeset h3 {
+    font-weight: 600;
+}
+
+/* 代码块字体 */
 pre, code, kbd, .md-typeset pre code {
     font-family: var(--md-code-font-family) !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--md-text-font-family) !important;
-    font-weight: 700 !important;
+/* 响应式字号放大，提升阅读感 */
+@media screen and (min-width: 960px) {
+    html {
+        font-size: 137.5%; 
+    }
 }
 
-/* 4. 深色模式 */
+.md-typeset {
+    font-size: .7rem;
+}
+
+/* ==========================================================================
+   4. 深色模式与 UI 特效
+   ========================================================================== */
 [data-md-color-scheme="slate"] {
-    --md-default-bg-color: #0d0d0d;
+    --md-default-bg-color: #0d0d0d;       /* 极致纯黑 */
+    --md-primary-fg-color: #0d0d0d;       /* 顶栏同步黑色 */
     --md-default-bg-color--light: #1a1a1a;
     --md-default-fg-color--light: #adbac7;
     --md-code-bg-color: #161618;
     --md-accent-fg-color: #7e56c2;
 }
 
-/* 5. 首页特效 */
+/* 首页流光渐变标题 */
 .hero-text-gradient {
     background: linear-gradient(120deg, #bd34fe 30%, #41d1ff);
     -webkit-background-clip: text;
@@ -53,6 +84,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
 }
 
+/* 宽屏右侧目录 */
 @media screen and (min-width: 1220px) {
     .md-sidebar--secondary { display: block; }
 }
