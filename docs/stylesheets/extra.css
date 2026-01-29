@@ -1,25 +1,27 @@
 /* docs/stylesheets/extra.css */
 
 /* ==========================================================================
-   1. 字体引入 (Import Fonts)
+   1. 字体引入 (使用国内镜像 loli.net 加速)
    ========================================================================== */
 
-/* 引入中文字体：霞鹜文楷 (屏幕阅读版) - 国内镜像速度快 */
-@import url('https://cdn.staticfile.org/lxgw-wenkai-screen-web/v1.7.0/lxgw-wenkai-screen-web.css');
+/* 1. 引入 Fira Code (TonyCrane 同款英文/代码字体) */
+@import url('https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;700&display=swap');
 
-/* 引入英文字体：JetBrains Mono (通过 Google Fonts) */
-/* 如果你在国内且没梯子，加载这个可能会慢。如果慢，可以暂时注释掉下面这行，它会回退到系统等宽字体 */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+/* 2. 引入 Noto Serif SC (思源宋体 - 这就是你想要的那个偏楷体的感觉) */
+/* wght@400;700 表示同时加载常规和粗体字重 */
+@import url('https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
 
 
 /* ==========================================================================
    2. 全局变量定义 (Variables)
    ========================================================================== */
 :root {
-    /* 修正变量名，使其统一 */
-    /* 英文优先 JetBrains Mono，中文后备霞鹜文楷 */
-    --md-text-font-family: "JetBrains Mono", "LXGW WenKai Screen", "Noto Sans SC", sans-serif;
-    --md-code-font-family: "JetBrains Mono", monospace;
+    /* 核心修改：英文用 Fira Code，中文优先用思源宋体 */
+    /* 如果加载失败，回退到系统自带的宋体或楷体 */
+    --md-text-font-family: "Fira Code", "Noto Serif SC", "STSong", "KaiTi", serif;
+    
+    /* 代码字体也改成 Fira Code */
+    --md-code-font-family: "Fira Code", monospace;
 }
 
 
@@ -30,6 +32,8 @@
 /* 全局应用字体 */
 body {
     font-family: var(--md-text-font-family);
+    font-weight: 400; /* 正文用常规字重，不要太粗 */
+    font-size: 16px;  /* 稍微调大一点点字体，看着更舒服 */
 }
 
 /* 代码块应用字体 */
@@ -37,7 +41,7 @@ pre, code, kbd {
     font-family: var(--md-code-font-family);
 }
 
-/* 标题样式：强制使用 JetBrains Mono，营造极客感 */
+/* 标题样式：强制使用 Fira Code，营造极客感 */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--md-code-font-family);
     font-weight: 700;
@@ -45,16 +49,16 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* ==========================================================================
-   4. 配色与主题 (Color Scheme)
+   4. 其他样式保持不变 (背景色、渐变等)
    ========================================================================== */
 
 /* 定义更黑的背景色变量 (Dark Mode) */
 [data-md-color-scheme="slate"] {
-    --md-default-bg-color: #0d0d0d;       /* 几乎纯黑的背景 */
-    --md-default-bg-color--light: #1a1a1a; /* 稍微亮一点的侧边栏 */
-    --md-default-fg-color--light: #adbac7; /* 文字颜色偏冷灰 */
-    --md-code-bg-color: #161618;           /* 代码块背景 */
-    --md-accent-fg-color: #7e56c2;         /* 强调色 */
+    --md-default-bg-color: #0d0d0d;
+    --md-default-bg-color--light: #1a1a1a;
+    --md-default-fg-color--light: #adbac7;
+    --md-code-bg-color: #161618;
+    --md-accent-fg-color: #7e56c2;
 }
 
 /* 首页大标题渐变色 */
@@ -66,33 +70,9 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
 }
 
-
-/* ==========================================================================
-   5. 组件优化 (Components)
-   ========================================================================== */
-
 /* 让右侧目录栏(ToC)在宽屏下一直显示 */
 @media screen and (min-width: 1220px) {
     .md-sidebar--secondary {
         display: block;
     }
-}
-
-/* 自定义 Abstract 提示块样式 (渐变边框) */
-.md-typeset .admonition.abstract {
-    border-left-width: 0px;
-    border-top: 4px solid;
-    border-image: linear-gradient(120deg, #bd34fe 30%, #41d1ff) 1;
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
-.md-typeset .admonition.abstract > .admonition-title {
-    background: transparent;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    font-weight: bold;
-    font-family: var(--md-code-font-family); /* 标题也用代码字体 */
-}
-
-.md-typeset .admonition.abstract > .admonition-title::before {
-    background-color: #bd34fe;
 }
