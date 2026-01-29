@@ -11,8 +11,8 @@ theme:
   language: zh
   favicon: assets/favicon.png
   
-  # 👇 必须为 false，拆掉默认地基
-  font: false
+  # 👇 必须为 false，拆掉默认地基，防止默认字体覆盖你的自定义设置
+  font: false 
 
   palette: 
     - scheme: slate
@@ -36,7 +36,6 @@ theme:
     - navigation.top
     - navigation.tracking
     - content.code.copy
-
 # =========================
 # 2. 插件配置
 # =========================
@@ -62,12 +61,11 @@ markdown_extensions:
 # 3. 自定义样式 (完全复刻 TonyCrane 引入方式)
 # =========================
 extra_css:
-  # 直接引入大佬维护的远程样式
+  # 1. 远程引入字体定义 (包含 @font-face 逻辑)
   - https://cdn.tonycrane.cc/jbmono/jetbrainsmono.css
   - https://cdn.tonycrane.cc/lxgw/lxgwscreen.css
-  # 引入你本地的微调样式
+  # 2. 引入你本地的微调样式
   - stylesheets/extra.css
-
 extra_javascript: []
 
 # =========================
