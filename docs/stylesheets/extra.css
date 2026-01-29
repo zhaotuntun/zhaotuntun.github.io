@@ -1,44 +1,32 @@
 /* docs/stylesheets/extra.css */
 
 /* ==========================================================================
-   1. 字体引入 (修复版)
+   1. 字体引入
    ========================================================================== */
 
-/* 来自 Tony Crane 的 LXGW WenKai Screen (修复了部分平台无法访问的问题) */
-@import url('https://cdn.tonycrane.cc/lxgw/lxgwscreen.css');
+/* 🟢 使用饿了么 CDN 加载 JetBrains Mono */
+/* 这是一个纯 CSS 文件，它会自动帮你在后台加载 woff2 字体文件，不用你自己管 */
+@import url('https://npm.elemecdn.com/jetbrains-mono@1.0.6/css/jetbrains-mono.css');
 
-/* 本地 JetBrains Mono (保持原样，路径是对的) */
-@font-face {
-    font-family: 'JetBrains Mono';
-    src: url('../assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'JetBrains Mono';
-    src: url('../assets/fonts/JetBrainsMono-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-}
 
 /* ==========================================================================
-   2. 全局变量与核心样式
+   2. 全局变量定义
    ========================================================================== */
 :root {
-    /* 这里的名字必须匹配：英文用 JetBrains Mono，中文用 LXGW WenKai Screen */
-    --md-text-font-family: "JetBrains Mono", "LXGW WenKai Screen", sans-serif;
+    /* 英文用 JetBrains Mono，中文用系统默认 (不指定就是默认) */
+    /* 这里的 "JetBrains Mono" 必须和上面 CDN 里定义的名字一致 */
+    --md-text-font-family: "JetBrains Mono", sans-serif;
     --md-code-font-family: "JetBrains Mono", monospace;
 }
 
-/* 强制覆盖 Material 主题默认字体 */
-body, input, .md-header, .md-nav, .md-footer, .md-select {
+/* ==========================================================================
+   3. 强制覆盖 Material 主题设置
+   ========================================================================== */
+
+/* 让正文、标题、导航栏全部变成 JetBrains Mono (英文部分) */
+body, input, .md-header, .md-nav, .md-select {
     font-family: var(--md-text-font-family) !important;
     font-size: 16px;
-    -webkit-font-smoothing: antialiased;
-}
-
-pre, code, kbd, .md-typeset pre code {
-    font-family: var(--md-code-font-family) !important;
 }
 
 /* 标题加粗 */
@@ -47,8 +35,13 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700 !important;
 }
 
+/* 代码块 */
+pre, code, kbd, .md-typeset pre code {
+    font-family: var(--md-code-font-family) !important;
+}
+
 /* ==========================================================================
-   3. 深色模式纯黑背景
+   4. 深色模式纯黑背景 (保留你的极客黑)
    ========================================================================== */
 [data-md-color-scheme="slate"] {
     --md-default-bg-color: #0d0d0d;
@@ -58,7 +51,7 @@ h1, h2, h3, h4, h5, h6 {
     --md-accent-fg-color: #7e56c2;
 }
 
-/* 首页渐变大标题 */
+/* 首页渐变特效 */
 .hero-text-gradient {
     background: linear-gradient(120deg, #bd34fe 30%, #41d1ff);
     -webkit-background-clip: text;
