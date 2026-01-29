@@ -1,32 +1,49 @@
 /* docs/stylesheets/extra.css */
 
 /* ==========================================================================
-   1. 字体引入
+   1. 定义本地字体 (Local Fonts)
    ========================================================================== */
 
-/* 🟢 使用饿了么 CDN 加载 JetBrains Mono */
-/* 这是一个纯 CSS 文件，它会自动帮你在后台加载 woff2 字体文件，不用你自己管 */
-@import url('https://npm.elemecdn.com/jetbrains-mono@1.0.6/css/jetbrains-mono.css');
+/* 定义常规体 (Regular) */
+@font-face {
+    font-family: 'JetBrains Mono';
+    /* 核心路径：../assets/fonts/ 对应你截图里的真实位置 */
+    src: url('../assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
 
+/* 定义粗体 (Bold) */
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../assets/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
 
 /* ==========================================================================
-   2. 全局变量定义
+   2. 全局变量设置
    ========================================================================== */
 :root {
-    /* 英文用 JetBrains Mono，中文用系统默认 (不指定就是默认) */
-    /* 这里的 "JetBrains Mono" 必须和上面 CDN 里定义的名字一致 */
+    /* 英文/代码强制用 JetBrains Mono，中文留空使用系统默认 (更稳定) */
     --md-text-font-family: "JetBrains Mono", sans-serif;
     --md-code-font-family: "JetBrains Mono", monospace;
 }
 
 /* ==========================================================================
-   3. 强制覆盖 Material 主题设置
+   3. 强制覆盖 Material 主题
    ========================================================================== */
 
-/* 让正文、标题、导航栏全部变成 JetBrains Mono (英文部分) */
-body, input, .md-header, .md-nav, .md-select {
+/* 全局字体覆盖 */
+body, input, .md-header, .md-nav, .md-footer, .md-select {
     font-family: var(--md-text-font-family) !important;
     font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 代码块、行内代码 */
+pre, code, kbd, .md-typeset pre code {
+    font-family: var(--md-code-font-family) !important;
 }
 
 /* 标题加粗 */
@@ -35,13 +52,8 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700 !important;
 }
 
-/* 代码块 */
-pre, code, kbd, .md-typeset pre code {
-    font-family: var(--md-code-font-family) !important;
-}
-
 /* ==========================================================================
-   4. 深色模式纯黑背景 (保留你的极客黑)
+   4. 深色模式纯黑背景
    ========================================================================== */
 [data-md-color-scheme="slate"] {
     --md-default-bg-color: #0d0d0d;
@@ -51,7 +63,7 @@ pre, code, kbd, .md-typeset pre code {
     --md-accent-fg-color: #7e56c2;
 }
 
-/* 首页渐变特效 */
+/* 首页流光标题 */
 .hero-text-gradient {
     background: linear-gradient(120deg, #bd34fe 30%, #41d1ff);
     -webkit-background-clip: text;
@@ -60,7 +72,7 @@ pre, code, kbd, .md-typeset pre code {
     font-weight: bold;
 }
 
-/* 宽屏显示右侧目录 */
+/* 宽屏显示目录 */
 @media screen and (min-width: 1220px) {
     .md-sidebar--secondary { display: block; }
 }
