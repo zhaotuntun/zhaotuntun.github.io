@@ -1,60 +1,41 @@
 /* docs/stylesheets/extra.css */
 
-/* ==========================================================================
-   1. 定义本地字体 (Local Fonts)
-   ========================================================================== */
-
-/* 定义常规体 (Regular) */
+/* 1. 定义字体 (引用刚才改名后的文件) */
 @font-face {
-    font-family: 'JetBrains Mono';
-    /* 核心路径：../assets/fonts/ 对应你截图里的真实位置 */
-    src: url('../assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+    font-family: 'MyJetBrains';  /* 起个新名字，强制浏览器不使用系统缓存 */
+    src: url('../assets/fonts/jb-reg.woff2') format('woff2'); /* 对应 jb-reg.woff2 */
     font-weight: 400;
     font-style: normal;
 }
 
-/* 定义粗体 (Bold) */
 @font-face {
-    font-family: 'JetBrains Mono';
-    src: url('../assets/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+    font-family: 'MyJetBrains';
+    src: url('../assets/fonts/jb-bold.woff2') format('woff2'); /* 对应 jb-bold.woff2 */
     font-weight: 700;
     font-style: normal;
 }
 
-/* ==========================================================================
-   2. 全局变量设置
-   ========================================================================== */
+/* 2. 变量定义 */
 :root {
-    /* 英文/代码强制用 JetBrains Mono，中文留空使用系统默认 (更稳定) */
-    --md-text-font-family: "JetBrains Mono", sans-serif;
-    --md-code-font-family: "JetBrains Mono", monospace;
+    --md-text-font-family: "MyJetBrains", sans-serif;
+    --md-code-font-family: "MyJetBrains", monospace;
 }
 
-/* ==========================================================================
-   3. 强制覆盖 Material 主题
-   ========================================================================== */
-
-/* 全局字体覆盖 */
+/* 3. 强制全局覆盖 */
 body, input, .md-header, .md-nav, .md-footer, .md-select {
     font-family: var(--md-text-font-family) !important;
-    font-size: 16px;
-    -webkit-font-smoothing: antialiased;
 }
 
-/* 代码块、行内代码 */
 pre, code, kbd, .md-typeset pre code {
     font-family: var(--md-code-font-family) !important;
 }
 
-/* 标题加粗 */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--md-text-font-family) !important;
     font-weight: 700 !important;
 }
 
-/* ==========================================================================
-   4. 深色模式纯黑背景
-   ========================================================================== */
+/* 4. 深色模式 */
 [data-md-color-scheme="slate"] {
     --md-default-bg-color: #0d0d0d;
     --md-default-bg-color--light: #1a1a1a;
@@ -63,7 +44,7 @@ h1, h2, h3, h4, h5, h6 {
     --md-accent-fg-color: #7e56c2;
 }
 
-/* 首页流光标题 */
+/* 5. 首页特效 */
 .hero-text-gradient {
     background: linear-gradient(120deg, #bd34fe 30%, #41d1ff);
     -webkit-background-clip: text;
@@ -72,7 +53,6 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
 }
 
-/* 宽屏显示目录 */
 @media screen and (min-width: 1220px) {
     .md-sidebar--secondary { display: block; }
 }
