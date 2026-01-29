@@ -1,40 +1,75 @@
 /* docs/stylesheets/extra.css */
 
-/* 引入霞鹜文楷 (一款非常好看的开源手写体，TonyCrane 有时也用这个) */
+/* ==========================================================================
+   1. 字体引入 (Import Fonts)
+   ========================================================================== */
+
+/* 引入中文字体：霞鹜文楷 (屏幕阅读版) - 国内镜像速度快 */
 @import url('https://cdn.staticfile.org/lxgw-wenkai-screen-web/v1.7.0/lxgw-wenkai-screen-web.css');
 
-/* 或者只引入思源黑体 (更标准) */
-/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap'); (Google源，国内慎用) */
+/* 引入英文字体：JetBrains Mono (通过 Google Fonts) */
+/* 如果你在国内且没梯子，加载这个可能会慢。如果慢，可以暂时注释掉下面这行，它会回退到系统等宽字体 */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 
+
+/* ==========================================================================
+   2. 全局变量定义 (Variables)
+   ========================================================================== */
 :root {
-    /* 定义字体变量 */
-    --md-text-font: "LXGW WenKai Screen", "Noto Sans SC", sans-serif;
-    --md-code-font: "JetBrains Mono", monospace;
+    /* 修正变量名，使其统一 */
+    /* 英文优先 JetBrains Mono，中文后备霞鹜文楷 */
+    --md-text-font-family: "JetBrains Mono", "LXGW WenKai Screen", "Noto Sans SC", sans-serif;
+    --md-code-font-family: "JetBrains Mono", monospace;
 }
 
+
+/* ==========================================================================
+   3. 核心样式应用 (Core Styles)
+   ========================================================================== */
+
+/* 全局应用字体 */
 body {
-    font-family: var(--md-text-font);
+    font-family: var(--md-text-font-family);
 }
 
-/* 定义更黑的背景色变量 */
+/* 代码块应用字体 */
+pre, code, kbd {
+    font-family: var(--md-code-font-family);
+}
+
+/* 标题样式：强制使用 JetBrains Mono，营造极客感 */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--md-code-font-family);
+    font-weight: 700;
+}
+
+
+/* ==========================================================================
+   4. 配色与主题 (Color Scheme)
+   ========================================================================== */
+
+/* 定义更黑的背景色变量 (Dark Mode) */
 [data-md-color-scheme="slate"] {
     --md-default-bg-color: #0d0d0d;       /* 几乎纯黑的背景 */
-    --md-default-bg-color--light: #1a1a1a; /*稍微亮一点的侧边栏 */
+    --md-default-bg-color--light: #1a1a1a; /* 稍微亮一点的侧边栏 */
     --md-default-fg-color--light: #adbac7; /* 文字颜色偏冷灰 */
     --md-code-bg-color: #161618;           /* 代码块背景 */
-    
-    /* 调整右侧目录栏的线条颜色，让它隐约可见但不过分抢眼 */
-    --md-accent-fg-color: #7e56c2;         /* 强调色(链接/按钮) */
+    --md-accent-fg-color: #7e56c2;         /* 强调色 */
 }
 
-/* 首页大标题渐变色 (模仿 TonyCrane) */
+/* 首页大标题渐变色 */
 .hero-text-gradient {
     background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
     -webkit-background-clip: text;
-    background-clip: text; /* ✅ 新增这一行，消除警告 */
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
 }
+
+
+/* ==========================================================================
+   5. 组件优化 (Components)
+   ========================================================================== */
 
 /* 让右侧目录栏(ToC)在宽屏下一直显示 */
 @media screen and (min-width: 1220px) {
@@ -43,38 +78,21 @@ body {
     }
 }
 
-/* 自定义 Abstract 提示块的样式 */
+/* 自定义 Abstract 提示块样式 (渐变边框) */
 .md-typeset .admonition.abstract {
-    border-left-width: 0px; /* 去掉默认左边框 */
-    border-top: 4px solid;  /* 改为顶部边框 */
-    
-    /* 定义边框为渐变色 (和你首页标题一致) */
+    border-left-width: 0px;
+    border-top: 4px solid;
     border-image: linear-gradient(120deg, #bd34fe 30%, #41d1ff) 1;
-    
-    /*稍微加深一点背景，突出显示 */
     background-color: rgba(255, 255, 255, 0.05);
 }
 
 .md-typeset .admonition.abstract > .admonition-title {
-    /* 标题背景也搞成渐变，或者保持透明 */
     background: transparent;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     font-weight: bold;
+    font-family: var(--md-code-font-family); /* 标题也用代码字体 */
 }
 
-/* 这是一个可选的：让标题文字也变成渐变色 */
 .md-typeset .admonition.abstract > .admonition-title::before {
-    background-color: #bd34fe; /* 图标颜色 */
-}
-
-/* 让所有标题 (h1-h6) 都使用代码字体，产生极客感 */
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--md-code-font-family); /* 使用你在yml里设置的 code 字体 */
-    font-weight: 700; /* 加粗 */
-}
-
-/* 优化中英文混排显示 */
-body {
-    /* 英文优先用代码字体，中文回退到思源黑体 */
-    font-family: "JetBrains Mono", "Noto Sans SC", sans-serif;
+    background-color: #bd34fe;
 }
