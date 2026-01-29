@@ -1,71 +1,78 @@
 /* docs/stylesheets/extra.css */
 
-/* 1. 必须放在文件最顶端 */
-/* 引入 JetBrains Mono */
-@import url('https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.0/index.css');
-/* 引入 霞鹜文楷 屏幕版 (通用 CDN 版) */
-@import url('https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-web/style.css');
+/* ==========================================================================
+   1. 字体引入
+   ========================================================================== */
 
+/* 引入霞鹜文楷 Screen 切片版 (CDN 动态加载方案) */
+/* 采用动态分片，浏览器仅下载页面出现的汉字，解决中文体积过大的问题 */
+@import url('https://cdn.staticfile.org/lxgw-wenkai-screen-web/v1.7.0/lxgw-wenkai-screen-web.css');
+
+/* 定义本地 JetBrains Mono (从你 docs/assets/fonts/ 引入) */
+@font-face {
+    font-family: 'JetBrains Mono';
+    /* 路径相对于 stylesheets 文件夹，需先返回上级目录 */
+    src: url('../assets/fonts/JetBrainsMono-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../assets/fonts/JetBrainsMono-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* ==========================================================================
+   2. 全局变量定义
+   ========================================================================== */
 :root {
-    /* 核心：确保名称与库定义一致 */
-    /* 英文: "JetBrains Mono", 中文: "LXGW WenKai Screen" */
+    /* 字体栈逻辑：英文优先使用 JetBrains Mono，中文 fallback 到霞鹜文楷 */
     --md-text-font-family: "JetBrains Mono", "LXGW WenKai Screen", sans-serif;
     --md-code-font-family: "JetBrains Mono", monospace;
 }
 
-/* 强制应用到全局 */
-body, input {
+/* ==========================================================================
+   3. 核心样式应用
+   ========================================================================== */
+
+/* 强制应用字体到全局，覆盖 Material Theme 默认设置 */
+body, input, .md-header, .md-nav, .md-footer, .md-select {
     font-family: var(--md-text-font-family) !important;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased; /* 字体抗锯齿优化 */
 }
 
-pre, code, kbd {
+/* 代码块、行内代码、键盘按键 */
+pre, code, kbd, .md-typeset pre code {
     font-family: var(--md-code-font-family) !important;
 }
 
+/* 标题样式：加粗并统一字体 */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--md-text-font-family) !important;
+    font-weight: 700 !important;
 }
-
 
 /* ==========================================================================
-   3. 核心样式应用 (Core Styles)
+   4. 深色模式纯黑定制 (TonyCrane 风格核心)
    ========================================================================== */
-
-/* 全局应用字体 */
-body {
-    font-family: var(--md-text-font-family);
-    font-weight: 400; /* 霞鹜文楷默认字重就很舒服，不需要加粗 */
-    font-size: 16px;  /* 保持 16px 的舒适阅读大小 */
-}
-
-/* 代码块、键盘按键应用代码字体 */
-pre, code, kbd {
-    font-family: var(--md-code-font-family);
-}
-
-/* 标题样式：TonyCrane 的标题也是用这个字体栈，保持统一 */
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--md-text-font-family); 
-    font-weight: 700; /* 标题加粗 */
-}
-
-
-/* ==========================================================================
-   4. 其他样式 (保持你原有的深色模式和渐变设置)
-   ========================================================================== */
-
-/* 定义更黑的背景色变量 (Dark Mode) */
 [data-md-color-scheme="slate"] {
-    --md-default-bg-color: #0d0d0d;
+    --md-default-bg-color: #0d0d0d;       /* 极致纯黑背景 */
     --md-default-bg-color--light: #1a1a1a;
     --md-default-fg-color--light: #adbac7;
     --md-code-bg-color: #161618;
-    --md-accent-fg-color: #7e56c2;
+    --md-accent-fg-color: #7e56c2;       /* 紫色点缀 */
 }
 
-/* 首页大标题渐变色 */
+/* ==========================================================================
+   5. UI 特效与布局微调
+   ========================================================================== */
+
+/* 首页大标题流光渐变色 */
 .hero-text-gradient {
-    background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
+    background: linear-gradient(120deg, #bd34fe 30%, #41d1ff);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -77,4 +84,9 @@ h1, h2, h3, h4, h5, h6 {
     .md-sidebar--secondary {
         display: block;
     }
+}
+
+/* 优化 Admonition (提示框) 的字体统一 */
+.md-typeset .admonition, .md-typeset details {
+    font-family: var(--md-text-font-family);
 }
